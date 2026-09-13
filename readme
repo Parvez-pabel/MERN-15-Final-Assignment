@@ -1,0 +1,34 @@
+MERN 15 || Final Assignment
+
+
+
+Welcome to your final Assignment. In this, you have to create a full-stack news portal website. 
+
+
+
+Technology:
+FrontEnd: React Js, Tailwind Css or Bootstrap or Raw Css, Zustand or Redux
+
+Backend: Express Js, Node js , MongoDB
+
+
+
+
+Functional Requirements:
+1. Home page, it will have 4-5 sections. The top 6 news will be shown in any one section (Need api Call).
+
+2. News page, Here all the news will be shown for users. (Need Api call)
+
+3. Single News Details Page (Need Api Call) 
+
+4. Login and register Page where user can login and register (Api Call) 
+
+5. Registered user can create his own news and publish to this website (Api call)
+
+6. User Dashbaord or Profile Page where user can update his user information ( Api call)
+
+7. Register User can edit or delete his news from user profile or the dashboard (api call)
+
+4. Contact Us Page
+
+5. Header & footer
