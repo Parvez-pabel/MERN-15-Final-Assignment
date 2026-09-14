@@ -119,3 +119,49 @@ export const loginService = async (req) => {
         return { status: "error", data: "Internal Server Error" };
     }
 };
+
+export const ProfileDetailsService = async (req) => {
+    try {
+        let userID = req.user.user_id;
+        let data = await userModel.findOne(
+            {
+                _id: userID,
+            },
+            {
+                password: 0,
+                otp: 0,
+                otpExpiry: 0,
+                status: 0,
+            },
+        );
+        return { status: "success", data: data };
+    } catch (error) {
+        return {
+            status: "error",
+            data: "Internal Server Error",
+            Error: error.toString(),
+        };
+    }
+};
+
+
+export const ProfileUpdateService = async (req) => {
+    try {
+        let userID = req.user.user_id;
+        console.log(userID);
+        let reqBody = req.body;
+        console.log(reqBody);
+
+        delete reqBody.email;
+        delete reqBody.password;
+        delete reqBody.role;
+        let data = await userModel.updateOne({ _id: userID }, { $set: reqBody });
+        return { status: "success", data: data };
+    } catch (error) {
+        return {
+            status: "error",
+            data: "Internal Server Error",
+            error: error.message,
+        };
+    }
+};

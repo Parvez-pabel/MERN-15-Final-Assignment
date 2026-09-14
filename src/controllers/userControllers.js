@@ -1,4 +1,4 @@
-import { loginService, userRegistrationService, verifyOTPService } from "../services/userServices.js";
+import { loginService, ProfileDetailsService, ProfileUpdateService, userRegistrationService, verifyOTPService } from "../services/userServices.js";
 import { getCookieOption } from "../utility/tokenHelper.js";
 
 export const registration = async (req, res) => {
@@ -40,3 +40,40 @@ export const login = async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 };
+
+export const ProfileDetails = async (req, res) => {
+    try {
+        const result = await ProfileDetailsService(req);
+        res.status(200).json({ success: true, data: result });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+
+export const ProfileUpdate = async (req, res) => {
+    try {
+        const result = await ProfileUpdateService(req);
+        res.status(200).json({ success: true, data: result });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+// //reset password send otp
+// export const sendOtp = async (req, res) => {
+//     try {
+//         const result = await sendOtpService(req);
+//         res.status(200).json({ success: true, data: result });
+//     } catch (error) {
+//         res.status(500).json({ success: false, message: error.message });
+//     }
+// };
+// //admin
+// export const getAllUser = async (req, res) => {
+//     try {
+//         const result = await getAllUserService(req);
+//         res.status(200).json({ success: true, data: result });
+//     } catch (error) {
+//         res.status(500).json({ success: false, message: error.message });
+//     }
+// };
