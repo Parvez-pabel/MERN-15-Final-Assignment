@@ -1,6 +1,13 @@
 import express from "express";
-import { login, ProfileDetails, ProfileUpdate, registration, verifyOTP } from "../controllers/userControllers.js";
-import { Protect } from "../middlewares/authController.js";
+import {
+  deleteUser,
+  login,
+  ProfileDetails,
+  ProfileUpdate,
+  registration,
+  verifyOTP,
+} from "../controllers/userControllers.js";
+import { authorize, Protect } from "../middlewares/authController.js";
 
 const userRouter = express.Router();
 
@@ -8,11 +15,23 @@ const userRouter = express.Router();
 userRouter.post("/user/registration", registration);
 userRouter.get("/user/verify-otp/:email/:otp", verifyOTP);
 userRouter.post("/user/login", login);
-userRouter.get("/user/profile-details", Protect, ProfileDetails);
-userRouter.put("/user/profile-details-update", Protect, ProfileUpdate);
-
-
-
-
+userRouter.get(
+  "/user/profile-details",
+  Protect,
+  authorize("author", "super admin", "user"),
+  ProfileDetails,
+);
+userRouter.put(
+  "/user/profile-details-update",
+  Protect,
+  authorize("author", "super admin", "user"),
+  ProfileUpdate,
+);
+userRouter.delete(
+  "/user/profile-delete/:id",
+  Protect,
+  authorize("super admin"),
+  deleteUser,
+);
 
 export default userRouter;

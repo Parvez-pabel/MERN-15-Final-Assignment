@@ -1,4 +1,4 @@
-import { loginService, ProfileDetailsService, ProfileUpdateService, userRegistrationService, verifyOTPService } from "../services/userServices.js";
+import { loginService, ProfileDetailsService, ProfileUpdateService, userDeleteService, userRegistrationService, verifyOTPService } from "../services/userServices.js";
 import { getCookieOption } from "../utility/tokenHelper.js";
 
 export const registration = async (req, res) => {
@@ -58,6 +58,14 @@ export const ProfileUpdate = async (req, res) => {
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }
+};
+export const deleteUser = async (req, res) => {
+  try {
+    const result = await userDeleteService(req);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
 };
 // //reset password send otp
 // export const sendOtp = async (req, res) => {

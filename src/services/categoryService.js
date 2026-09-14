@@ -46,6 +46,31 @@ export const findByIdCategoryService = async (req) => {
   }
 };
 
+
+export const updateCategoryService = async (req) => {
+  try {
+    const categoryId = req.params.id;
+    const reqBody = req.body;
+
+    //delete sensitive field
+    delete reqBody.userId;
+    delete reqBody._id;
+
+    const updatedCat = await CategoryModel.findByIdAndUpdate(
+      categoryId,
+      { $set: reqBody },
+      { new: true, runValidators: true },
+    );
+    if (!updatedCat) {
+      return { status: "fail", data: "Resource Not Found" };
+    }
+    return { status: "success", data: updatedCat };
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const deleteService = async (req, Model) => {
   try {
     const { type, id } = req.params;
