@@ -30,7 +30,7 @@ const UserModelSchema = new mongoose.Schema(
         mobile: {
             type: String,
             unique: true,
-            required: true,
+
             isLowercase: true,
             validate: {
                 validator: function (v) {
