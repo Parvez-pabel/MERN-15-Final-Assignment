@@ -146,9 +146,8 @@ export const ProfileDetailsService = async (req) => {
 export const ProfileUpdateService = async (req) => {
   try {
     let userID = req.user.user_id;
-    console.log(userID);
     let reqBody = req.body;
-    console.log(reqBody);
+
 
     delete reqBody.email;
     delete reqBody.password;

@@ -8,6 +8,10 @@ import {
   verifyOTP,
 } from "../controllers/userControllers.js";
 import { authorize, Protect } from "../middlewares/authController.js";
+import {
+  applyForAuthorController,
+  contactController,
+} from "../controllers/contactController.js";
 
 const userRouter = express.Router();
 
@@ -33,5 +37,11 @@ userRouter.delete(
   authorize("super admin"),
   deleteUser,
 );
+
+//contact form routes
+userRouter.post("/user/contact/form", contactController);
+//author request routes
+
+userRouter.post("/user/author/request", applyForAuthorController);
 
 export default userRouter;
