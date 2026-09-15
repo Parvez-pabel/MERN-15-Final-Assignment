@@ -9,13 +9,13 @@ export const userRegistrationService = async (req) => {
     let userCount = await userModel.countDocuments({
       email: email,
     });
-    console.log(userCount);
+
     if (userCount > 0) {
       return { status: "fail", data: "Email already exist" };
     }
 
     let otp = Math.floor(100000 + Math.random() * 900000);
-    console.log(otp);
+
     const otpExpiryTime = new Date(Date.now() + 2 * 60 * 1000); // OTP valid for 2 minutes
     // let emailTo = email;
     // let emailSubject = "Inventory App Email Verification";
@@ -59,7 +59,6 @@ export const verifyOTPService = async (req, res) => {
       email: email,
       otp: otp,
     });
-    console.log(user);
 
     if (user) {
       const currentTime = new Date();
@@ -147,7 +146,6 @@ export const ProfileUpdateService = async (req) => {
   try {
     let userID = req.user.user_id;
     let reqBody = req.body;
-
 
     delete reqBody.email;
     delete reqBody.password;
