@@ -39,19 +39,13 @@ app.use("/api/v1", userRouter);
 app.use("/api/v1", newsRouter);
 
 //router health check
+// Health check
 app.get("/api/v1/health", (req, res) => {
-  const healthcheck = {
+  res.status(200).json({
     status: "OK",
-    uptime: process.uptime(), // seconds the server has been running
+    uptime: process.uptime(),
     timestamp: new Date().toISOString(),
-  };
-
-  try {
-    res.status(200).json(healthcheck);
-  } catch (error) {
-    healthcheck.message = error.message;
-    res.status(503).json(healthcheck);
-  }
+  });
 });
 
 // Default Route for Undefined Routes
