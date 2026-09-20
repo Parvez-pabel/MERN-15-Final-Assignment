@@ -26,8 +26,6 @@ newsRouter.post(
 );
 newsRouter.get(
   "/news/all-category",
-  Protect,
-  authorize("super admin"),
   getAllCategory,
 );
 newsRouter.get(
