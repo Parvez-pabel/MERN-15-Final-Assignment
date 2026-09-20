@@ -1,4 +1,5 @@
 import {
+    getAllUserService,
   loginService,
   logoutService,
   ProfileDetailsService,
@@ -85,12 +86,12 @@ export const deleteUser = async (req, res) => {
 // };
 // //admin
 export const getAllUser = async (req, res) => {
-    try {
-        const result = await getAllUserService(req);
-        res.status(200).json({ success: true, data: result });
-    } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
-    }
+  try {
+    const result = await getAllUserService(req);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
 };
 
 export const logoutController = async (req, res) => {
