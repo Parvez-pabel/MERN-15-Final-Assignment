@@ -1,6 +1,7 @@
 import express from "express";
 import {
   deleteUser,
+  getAllUser,
   login,
   logoutController,
   ProfileDetails,
@@ -31,7 +32,7 @@ userRouter.get(
   "/user/getAllUser",
   Protect,
   authorize("superAdmin"),
-  ProfileDetails,
+  getAllUser,
 );
 userRouter.put(
   "/user/profile-details-update",
