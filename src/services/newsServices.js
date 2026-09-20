@@ -199,11 +199,13 @@ export const getByIdNewsService = async (req) => {
       {
         $unwind: {
           path: "$Category",
+          preserveNullAndEmptyArrays: true,
         },
       },
       {
         $unwind: {
           path: "$User",
+          preserveNullAndEmptyArrays: true,
         },
       },
       {
