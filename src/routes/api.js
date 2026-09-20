@@ -24,19 +24,19 @@ userRouter.post("/logout", logoutController);
 userRouter.get(
   "/user/profile-details",
   Protect,
-  authorize("author", "super admin", "user"),
+  authorize("author", "superAdmin", "user"),
   ProfileDetails,
 );
 userRouter.put(
   "/user/profile-details-update",
   Protect,
-  authorize("author", "super admin", "user"),
+  authorize("author", "superAdmin", "user"),
   ProfileUpdate,
 );
 userRouter.delete(
   "/user/profile-delete/:id",
   Protect,
-  authorize("super admin"),
+  authorize("superAdmin"),
   deleteUser,
 );
 

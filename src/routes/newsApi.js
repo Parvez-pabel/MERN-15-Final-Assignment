@@ -21,30 +21,27 @@ const newsRouter = express.Router();
 newsRouter.post(
   "/news/category/create",
   Protect,
-  authorize("super admin"),
+  authorize("superAdmin"),
   categoryCreate,
 );
-newsRouter.get(
-  "/news/all-category",
-  getAllCategory,
-);
+newsRouter.get("/news/all-category", getAllCategory);
 newsRouter.get(
   "/news/category/:id",
   Protect,
-  authorize("super admin"),
+  authorize("superAdmin"),
   findByIdCategory,
 );
 newsRouter.put(
   "/news/update-category/:id",
   Protect,
-  authorize("super admin"),
+  authorize("superAdmin"),
   updateCategory,
 );
 //only super admin can delete
 newsRouter.delete(
   "/news/delete-news/:id",
   Protect,
-  authorize("super admin"),
+  authorize("superAdmin"),
   deleteNews,
 );
 
@@ -57,19 +54,19 @@ newsRouter.get("/news/all-News/:id", getByIdNewsController);
 newsRouter.post(
   "/news/create",
   Protect,
-  authorize("super admin", "author"),
+  authorize("superAdmin", "author"),
   createNewsController,
 );
 newsRouter.put(
   "/news/update-News/:id",
   Protect,
-  authorize("super admin", "author"),
+  authorize("superAdmin", "author"),
   updateNewsController,
 );
 newsRouter.get(
   "/news/user-news-list",
   Protect,
-  authorize("super admin", "author"),
+  authorize("superAdmin", "author"),
   UserNewsList,
 );
 
