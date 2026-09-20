@@ -225,7 +225,7 @@ export const getByIdNewsService = async (req) => {
         },
       },
     ]);
-    if (!NewsData) {
+    if (!NewsData || NewsData.length === 0) {
       return { status: "fail", data: "Resource Not Found" };
     }
     return { status: "success", data: NewsData };
