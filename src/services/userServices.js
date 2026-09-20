@@ -186,3 +186,15 @@ export const logoutService = async (req) => {
   }
 };
 
+export const getAllUserService = async (req) => {
+  try {
+    const allUser = await userModel.find();
+    if (!allUser) {
+      return { status: "fail", data: "Resource Not Found" };
+    }
+    return { status: "success", data: allUser };
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

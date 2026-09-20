@@ -27,6 +27,12 @@ userRouter.get(
   authorize("author", "superAdmin", "user"),
   ProfileDetails,
 );
+userRouter.get(
+  "/user/getAllUser",
+  Protect,
+  authorize("superAdmin"),
+  ProfileDetails,
+);
 userRouter.put(
   "/user/profile-details-update",
   Protect,
