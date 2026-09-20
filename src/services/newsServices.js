@@ -89,6 +89,26 @@ export const getAllNewsService = async (req) => {
     let limit = parseInt(req.query.limit) || 10;
     let skip = (page - 1) * limit;
 
+    //filter + search
+
+    const { search, categoryId } = req.query;
+
+    let matchStage = {};
+
+    if (search && search.trim() !== "") {
+      const searchRegex = new RegExp(search.trim(), "i");
+      matchStage.$or = [
+        {
+          title: searchRegex,
+          details: searchRegex,
+          location: searchRegex,
+        },
+      ];
+    }
+    if (categoryId && mongoose.Types.ObjectId.isValid(categoryId)) {
+      matchStage.categoryId = new mongoose.Types.ObjectId(categoryId);
+    }
+
     const result = await NewsModel.aggregate([
       {
         $facet: {
