@@ -4,6 +4,7 @@ import {
   logoutService,
   ProfileDetailsService,
   ProfileUpdateService,
+  UpdateUserRoleService,
   userDeleteService,
   userRegistrationService,
   verifyOTPService,
@@ -109,5 +110,14 @@ export const logoutController = async (req, res) => {
       success: false,
       message: error.message || "Logout failed",
     });
+  }
+};
+
+export const UpdateUserRole = async (req, res) => {
+  try {
+    const result = await UpdateUserRoleService(req);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 };

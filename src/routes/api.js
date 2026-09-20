@@ -40,6 +40,12 @@ userRouter.put(
   authorize("author", "superAdmin", "user"),
   ProfileUpdate,
 );
+userRouter.put(
+  "/admin/user-role-update",
+  Protect,
+  authorize("superAdmin"),
+  ProfileUpdate,
+);
 userRouter.delete(
   "/user/profile-delete/:id",
   Protect,

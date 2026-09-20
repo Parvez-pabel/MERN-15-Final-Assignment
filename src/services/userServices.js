@@ -160,6 +160,32 @@ export const ProfileUpdateService = async (req) => {
     };
   }
 };
+export const UpdateUserRoleService = async (req) => {
+  try {
+    const { userId, role } = req.body;
+
+    if (!userId || !role) {
+      return { status: "fail", message: "User ID and Role are required." };
+    }
+
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      { role },
+      { new: true },
+    );
+
+    if (!updatedUser) {
+      return { status: "fail", message: "User not found." };
+    }
+
+    return { status: "success", data: updatedUser };
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message || "Internal Server Error",
+    };
+  }
+};
 
 export const userDeleteService = async (req) => {
   try {
