@@ -51,6 +51,6 @@ userRouter.delete(
 userRouter.post("/user/contact/form", contactController);
 //author request routes
 
-userRouter.post("/user/author/request", applyForAuthorController);
+userRouter.post("/user/author/request", Protect, applyForAuthorController);
 
 export default userRouter;
