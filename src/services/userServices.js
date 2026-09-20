@@ -174,3 +174,15 @@ export const userDeleteService = async (req) => {
     throw error;
   }
 };
+
+export const logoutService = async (req) => {
+  try {
+    return {
+      message: "Logged out successfully",
+    };
+  } catch (error) {
+    console.error("Error in logoutService:", error);
+    throw error;
+  }
+};
+

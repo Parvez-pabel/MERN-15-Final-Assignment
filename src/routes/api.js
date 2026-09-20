@@ -2,6 +2,7 @@ import express from "express";
 import {
   deleteUser,
   login,
+  logoutController,
   ProfileDetails,
   ProfileUpdate,
   registration,
@@ -19,6 +20,7 @@ const userRouter = express.Router();
 userRouter.post("/user/registration", registration);
 userRouter.get("/user/verify-otp/:email/:otp", verifyOTP);
 userRouter.post("/user/login", login);
+userRouter.post("/logout", logoutController);
 userRouter.get(
   "/user/profile-details",
   Protect,
